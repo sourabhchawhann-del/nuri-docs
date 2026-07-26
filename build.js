@@ -163,7 +163,6 @@ function build() {
         <div class="breadcrumb">
           <a href="/">Docs</a> &rsaquo; <a href="/docs/${slug}">${section.title}</a> &rsaquo; ${title}
         </div>
-        <h1>${title}</h1>
         ${doc.html}
       `);
       fs.writeFileSync(path.join(PUBLIC_DIR, 'docs', slug + '.html'), html);

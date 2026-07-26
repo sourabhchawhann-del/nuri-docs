@@ -90,7 +90,6 @@ app.get('/docs/:slug', (req, res) => {
   const title = doc.frontmatter.title || docInfo.label;
   res.send(layout(title, buildSidebar(docInfo.file), `
     <div class="breadcrumb"><a href="/">Docs</a> &rsaquo; <a href="/docs/${req.params.slug}">${docInfo.section}</a> &rsaquo; ${title}</div>
-    <h1>${title}</h1>
     ${doc.html}
   `));
 });
