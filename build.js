@@ -58,7 +58,7 @@ function build() {
       </div>
       <div class="home-section-card-desc">${section.desc}</div>
       <ul class="home-section-card-list">${docList}</ul>
-      <div class="home-section-card-arrow">&rarr;</div>
+      <div class="home-section-card-arrow"><span>View all</span> &rarr;</div>
     </a>`;
   }).join('');
 
