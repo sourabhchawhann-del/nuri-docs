@@ -29,7 +29,6 @@ const SECTIONS = [
     { file: '03-Brand/Brand-Book.md', label: 'Brand Guidelines' },
   ]},
 ];
-];
 
 function readDoc(filePath) {
   const fullPath = path.join(DOCS_DIR, filePath);
@@ -161,9 +160,34 @@ body {
 .location-badge { font-size: 11px; font-weight: 600; color: var(--green); background: rgba(36,90,36,0.08); padding: 3px 10px; border-radius: 12px; margin-right: 8px; }
 .turnstile-wrap { margin-top: 32px; padding: 20px; background: var(--cream-soft); border: 1px solid var(--cream-border); border-radius: var(--radius-sm); }
 .turnstile-wrap p { font-size: 12px; color: var(--text-light); margin-bottom: 10px; }
+
+/* Turnstile Gate Overlay */
+.ts-gate {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--cream);
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+  transition: opacity 0.4s ease, visibility 0.4s;
+}
+.ts-gate.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.ts-gate-box {
+  background: var(--white); border: 1px solid var(--cream-border);
+  border-radius: var(--radius); padding: 40px 48px; text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06); max-width: 420px; width: 90%;
+}
+.ts-gate-logo { height: 48px; width: auto; border-radius: 10px; margin-bottom: 16px; }
+.ts-gate-title { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.ts-gate-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; }
+.ts-gate-spinner {
+  width: 28px; height: 28px; border: 3px solid var(--cream-border);
+  border-top-color: var(--green); border-radius: 50%;
+  animation: spin 0.7s linear infinite; margin: 16px auto 0;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.ts-gate-error { font-size: 12px; color: #dc2626; margin-top: 12px; display: none; }
 `;
 
 function layout(title, sidebarHtml, contentHtml, activeFile = '') {
+  const sitekey = process.env.TURNSTILE_SITEKEY || '0x4AAAAAAA';
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -178,6 +202,16 @@ function layout(title, sidebarHtml, contentHtml, activeFile = '') {
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
+  <div id="ts-gate" class="ts-gate">
+    <div class="ts-gate-box">
+      <img src="/logo.png" alt="Nuri" class="ts-gate-logo">
+      <div class="ts-gate-title">Verify you're human</div>
+      <div class="ts-gate-sub">Complete the check below to access Nuri Docs.</div>
+      <div class="cf-turnstile" data-sitekey="${sitekey}" data-theme="light" data-callback="onTurnstileSuccess"></div>
+      <div id="ts-gate-error" class="ts-gate-error">Verification failed. Please try again.</div>
+      <div id="ts-gate-spinner" class="ts-gate-spinner"></div>
+    </div>
+  </div>
   <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">&#9776;</button>
   <header class="topbar">
     <div class="topbar-inner">
@@ -205,17 +239,71 @@ function layout(title, sidebarHtml, contentHtml, activeFile = '') {
   </div>
   <script>
   (function(){
-    const STORAGE_KEY='nuri_docs_visited';
+    var TS_LOCAL='nuri_ts_verified';
+    var gate=document.getElementById('ts-gate');
+    var errEl=document.getElementById('ts-gate-error');
+    var spinner=document.getElementById('ts-gate-spinner');
+
+    function hasCookie(name){return document.cookie.split(';').some(function(c){return c.trim().startsWith(name+'=');});}
+    function isVerified(){return hasCookie('nuri_ts_verified') || localStorage.getItem(TS_LOCAL)==='1';}
+
+    if(isVerified()){
+      gate.classList.add('hidden');
+      document.body.style.overflow='';
+    } else {
+      document.body.style.overflow='hidden';
+    }
+
+    window.onTurnstileSuccess=function(token){
+      errEl.style.display='none';
+      fetch('/api/verify',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({token:token})
+      }).then(function(r){return r.json();}).then(function(data){
+        if(data.ok){
+          try{localStorage.setItem(TS_LOCAL,'1');}catch(e){}
+          gate.classList.add('hidden');
+          document.body.style.overflow='';
+        } else {
+          errEl.textContent=data.error||'Verification failed. Please try again.';
+          errEl.style.display='block';
+          if(spinner)spinner.style.display='none';
+        }
+      }).catch(function(){
+        try{localStorage.setItem(TS_LOCAL,'1');}catch(e){}
+        gate.classList.add('hidden');
+        document.body.style.overflow='';
+      });
+    };
+
+    window.onTurnstileError=function(){
+      errEl.style.display='block';
+      if(spinner)spinner.style.display='none';
+    };
+
+    setTimeout(function(){
+      if(!isVerified() && !window.turnstile){
+        errEl.textContent='Verification service unavailable. Please refresh.';
+        errEl.style.display='block';
+        if(spinner)spinner.style.display='none';
+      }
+    },8000);
+
+    // --- Visited tracker ---
+    var STORAGE_KEY='nuri_docs_visited';
     function getVisited(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{};}catch(e){return {};}}
-    function markVisited(s){const v=getVisited();v[s]=Date.now();localStorage.setItem(STORAGE_KEY,JSON.stringify(v));}
+    function markVisited(s){var v=getVisited();v[s]=Date.now();localStorage.setItem(STORAGE_KEY,JSON.stringify(v));}
     function isVisited(s){return !!getVisited()[s];}
-    const cs=location.pathname.replace('/docs/','').replace('.html','').replace('/','');
+    var cs=location.pathname.replace('/docs/','').replace('.html','').replace('/','');
     if(cs&&cs!=='')markVisited(cs);
-    function updateDots(){document.querySelectorAll('.nav-item').forEach(a=>{const s=a.getAttribute('href').replace('/docs/','').replace('.html','');if(isVisited(s)&&!a.querySelector('.visited-dot')){const d=document.createElement('span');d.className='visited-dot';d.style.cssText='display:inline-block;width:6px;height:6px;border-radius:50%;background:#22c55e;margin-left:6px;vertical-align:middle;';a.appendChild(d);}});}
+    function updateDots(){document.querySelectorAll('.nav-item').forEach(function(a){var s=a.getAttribute('href').replace('/docs/','').replace('.html','');if(isVisited(s)&&!a.querySelector('.visited-dot')){var d=document.createElement('span');d.className='visited-dot';d.style.cssText='display:inline-block;width:6px;height:6px;border-radius:50%;background:#22c55e;margin-left:6px;vertical-align:middle;';a.appendChild(d);}});}
     updateDots();
-    document.querySelectorAll('a[data-spa],.nav-item,.grid-card').forEach(link=>{link.addEventListener('click',function(e){const href=this.getAttribute('href');if(!href||(!href.startsWith('/docs/')&&href!=='/'))return;if(e.metaKey||e.ctrlKey)return;e.preventDefault();history.pushState({},'',href);fetch(href).then(r=>r.text()).then(html=>{const doc=new DOMParser().parseFromString(html,'text/html');const nc=doc.querySelector('#doc-content');const ns=doc.querySelector('.sidebar');if(nc)document.querySelector('#doc-content').innerHTML=nc.innerHTML;if(ns)document.querySelector('.sidebar').innerHTML=ns.innerHTML;document.title=doc.title;const s=href.replace('/docs/','').replace('.html','').replace('/','');if(s)markVisited(s);updateDots();window.scrollTo(0,0);});});});
-    window.addEventListener('popstate',()=>location.reload());
-    if(navigator.geolocation){navigator.geolocation.getCurrentPosition(pos=>{const lat=pos.coords.latitude;const lon=pos.coords.longitude;let r='Global';if(lat>6&&lat<38&&lon>68&&lon<98)r='India';else if(lat>24&&lat<50&&lon>-130&&lon<-60)r='North America';else if(lat>-10&&lat<55&&lon>-20&&lon<55)r='Europe';else if(lat>-10&&lat<55&&lon>95&&lon<155)r='Asia Pacific';const b=document.getElementById('location-badge');if(b){b.textContent=r;b.style.display='inline-block';}},()=>{},{timeout:5000});}
+
+    document.querySelectorAll('a[data-spa],.nav-item,.grid-card').forEach(function(link){link.addEventListener('click',function(e){var href=this.getAttribute('href');if(!href||(!href.startsWith('/docs/')&&href!=='/'))return;if(e.metaKey||e.ctrlKey)return;e.preventDefault();history.pushState({},'',href);fetch(href).then(function(r){return r.text();}).then(function(html){var doc=new DOMParser().parseFromString(html,'text/html');var nc=doc.querySelector('#doc-content');var ns=doc.querySelector('.sidebar');if(nc)document.querySelector('#doc-content').innerHTML=nc.innerHTML;if(ns)document.querySelector('.sidebar').innerHTML=ns.innerHTML;document.title=doc.title;var s=href.replace('/docs/','').replace('.html','').replace('/','');if(s)markVisited(s);updateDots();window.scrollTo(0,0);});});});
+    window.addEventListener('popstate',function(){location.reload();});
+
+    if(navigator.geolocation){navigator.geolocation.getCurrentPosition(function(pos){var lat=pos.coords.latitude;var lon=pos.coords.longitude;var r='Global';if(lat>6&&lat<38&&lon>68&&lon<98)r='India';else if(lat>24&&lat<50&&lon>-130&&lon<-60)r='North America';else if(lat>-10&&lat<55&&lon>-20&&lon<55)r='Europe';else if(lat>-10&&lat<55&&lon>95&&lon<155)r='Asia Pacific';var b=document.getElementById('location-badge');if(b){b.textContent=r;b.style.display='inline-block';}},function(){},{timeout:5000});}
   })();
   </script>
 </body>
@@ -244,10 +332,6 @@ app.get('/', (req, res) => {
       <p>Everything about Nuri — our story, policies, products, and more.</p>
     </div>
     <div class="grid">${cards}</div>
-    <div class="turnstile-wrap">
-      <p>Verify you're human</p>
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAAA" data-theme="light"></div>
-    </div>
   `));
 });
 

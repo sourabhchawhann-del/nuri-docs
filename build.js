@@ -218,6 +218,31 @@ body {
 .turnstile-wrap p { font-size: 12px; color: var(--text-light); margin-bottom: 10px; }
 .visited-indicator { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: #22c55e; font-weight: 500; }
 
+/* Turnstile Gate Overlay */
+.ts-gate {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--cream);
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+  transition: opacity 0.4s ease, visibility 0.4s;
+}
+.ts-gate.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.ts-gate-box {
+  background: var(--white); border: 1px solid var(--cream-border);
+  border-radius: var(--radius); padding: 40px 48px; text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06); max-width: 420px; width: 90%;
+  animation: scaleIn 0.35s ease-out;
+}
+.ts-gate-logo { height: 48px; width: auto; border-radius: 10px; margin-bottom: 16px; }
+.ts-gate-title { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.ts-gate-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; }
+.ts-gate-spinner {
+  width: 28px; height: 28px; border: 3px solid var(--cream-border);
+  border-top-color: var(--green); border-radius: 50%;
+  animation: spin 0.7s linear infinite; margin: 16px auto 0;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.ts-gate-error { font-size: 12px; color: #dc2626; margin-top: 12px; display: none; }
+
 /* === Animations === */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(16px); }
@@ -351,6 +376,8 @@ body {
 ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.2); }
 `;
 
+const TURNSTILE_SITEKEY = process.env.TURNSTILE_SITEKEY || '0x4AAAAAAA';
+
 function layout(title, sidebarHtml, contentHtml, activeFile = '') {
   return `<!DOCTYPE html>
 <html lang="en">
@@ -366,6 +393,16 @@ function layout(title, sidebarHtml, contentHtml, activeFile = '') {
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
+  <div id="ts-gate" class="ts-gate">
+    <div class="ts-gate-box">
+      <img src="/logo.png" alt="Nuri" class="ts-gate-logo">
+      <div class="ts-gate-title">Verify you're human</div>
+      <div class="ts-gate-sub">Complete the check below to access Nuri Docs.</div>
+      <div class="cf-turnstile" data-sitekey="${TURNSTILE_SITEKEY}" data-theme="light" data-callback="onTurnstileSuccess"></div>
+      <div id="ts-gate-error" class="ts-gate-error">Verification failed. Please try again.</div>
+      <div id="ts-gate-spinner" class="ts-gate-spinner"></div>
+    </div>
+  </div>
   <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">&#9776;</button>
   <header class="topbar">
     <div class="topbar-inner">
@@ -397,25 +434,74 @@ function layout(title, sidebarHtml, contentHtml, activeFile = '') {
   </div>
   <script>
   (function(){
+    var TS_LOCAL='nuri_ts_verified';
+    var gate=document.getElementById('ts-gate');
+    var errEl=document.getElementById('ts-gate-error');
+    var spinner=document.getElementById('ts-gate-spinner');
+
+    function hasCookie(name){return document.cookie.split(';').some(function(c){return c.trim().startsWith(name+'=');});}
+    function isVerified(){return hasCookie('nuri_ts_verified') || localStorage.getItem(TS_LOCAL)==='1';}
+
+    if(isVerified()){
+      gate.classList.add('hidden');
+      document.body.style.overflow='';
+    } else {
+      document.body.style.overflow='hidden';
+    }
+
+    window.onTurnstileSuccess=function(token){
+      errEl.style.display='none';
+      fetch('/api/verify',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({token:token})
+      }).then(function(r){return r.json();}).then(function(data){
+        if(data.ok){
+          try{localStorage.setItem(TS_LOCAL,'1');}catch(e){}
+          gate.classList.add('hidden');
+          document.body.style.overflow='';
+        } else {
+          errEl.textContent=data.error||'Verification failed. Please try again.';
+          errEl.style.display='block';
+          if(spinner)spinner.style.display='none';
+        }
+      }).catch(function(){
+        try{localStorage.setItem(TS_LOCAL,'1');}catch(e){}
+        gate.classList.add('hidden');
+        document.body.style.overflow='';
+      });
+    };
+
+    window.onTurnstileError=function(){
+      errEl.style.display='block';
+      if(spinner)spinner.style.display='none';
+    };
+
+    setTimeout(function(){
+      if(!isVerified() && !window.turnstile){
+        errEl.textContent='Verification service unavailable. Please refresh.';
+        errEl.style.display='block';
+        if(spinner)spinner.style.display='none';
+      }
+    },8000);
+
     // --- Visited tracker ---
-    const STORAGE_KEY = 'nuri_docs_visited';
+    var STORAGE_KEY = 'nuri_docs_visited';
     function getVisited(){ try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch(e){ return {}; } }
     function markVisited(slug){
-      const v = getVisited(); v[slug] = Date.now(); localStorage.setItem(STORAGE_KEY, JSON.stringify(v));
+      var v = getVisited(); v[slug] = Date.now(); localStorage.setItem(STORAGE_KEY, JSON.stringify(v));
     }
     function isVisited(slug){ return !!getVisited()[slug]; }
 
-    // Mark current page visited on load
-    const currentSlug = location.pathname.replace('/docs/','').replace('.html','').replace('/','');
+    var currentSlug = location.pathname.replace('/docs/','').replace('.html','').replace('/','');
     if(currentSlug && currentSlug !== '') markVisited(currentSlug);
 
-    // Add visited dots to sidebar
     function updateSidebarDots(){
-      document.querySelectorAll('.nav-item').forEach(a => {
-        const slug = a.getAttribute('href').replace('/docs/','').replace('.html','');
+      document.querySelectorAll('.nav-item').forEach(function(a){
+        var slug = a.getAttribute('href').replace('/docs/','').replace('.html','');
         if(isVisited(slug)){
           if(!a.querySelector('.visited-dot')){
-            const dot = document.createElement('span');
+            var dot = document.createElement('span');
             dot.className = 'visited-dot';
             dot.style.cssText = 'display:inline-block;width:6px;height:6px;border-radius:50%;background:#22c55e;margin-left:6px;vertical-align:middle;';
             a.appendChild(dot);
@@ -426,53 +512,48 @@ function layout(title, sidebarHtml, contentHtml, activeFile = '') {
     updateSidebarDots();
 
     // --- SPA navigation with transition ---
-    document.querySelectorAll('a[data-spa], .nav-item, .grid-card').forEach(link => {
+    document.querySelectorAll('a[data-spa], .nav-item, .grid-card').forEach(function(link){
       link.addEventListener('click', function(e){
-        const href = this.getAttribute('href');
+        var href = this.getAttribute('href');
         if(!href || (!href.startsWith('/docs/') && href !== '/')) return;
         if(e.metaKey || e.ctrlKey) return;
         e.preventDefault();
-        const container = document.querySelector('#doc-content');
+        var container = document.querySelector('#doc-content');
         container.classList.add('transitioning');
-        setTimeout(() => {
+        setTimeout(function(){
           history.pushState({}, '', href);
-          fetch(href).then(r => r.text()).then(html => {
-            const doc = new DOMParser().parseFromString(html, 'text/html');
-            const newContent = doc.querySelector('#doc-content');
-            const newSidebar = doc.querySelector('.sidebar');
-            if(newContent){
-              container.innerHTML = newContent.innerHTML;
-            }
-            if(newSidebar){
-              document.querySelector('.sidebar').innerHTML = newSidebar.innerHTML;
-            }
+          fetch(href).then(function(r){ return r.text(); }).then(function(html){
+            var doc = new DOMParser().parseFromString(html, 'text/html');
+            var newContent = doc.querySelector('#doc-content');
+            var newSidebar = doc.querySelector('.sidebar');
+            if(newContent) container.innerHTML = newContent.innerHTML;
+            if(newSidebar) document.querySelector('.sidebar').innerHTML = newSidebar.innerHTML;
             document.title = doc.title;
-            const slug = href.replace('/docs/','').replace('.html','').replace('/','');
+            var slug = href.replace('/docs/','').replace('.html','').replace('/','');
             if(slug) markVisited(slug);
             updateSidebarDots();
             window.scrollTo(0,0);
-            requestAnimationFrame(() => {
+            requestAnimationFrame(function(){
               container.classList.remove('transitioning');
             });
           });
         }, 120);
       });
     });
-    window.addEventListener('popstate', () => location.reload());
+    window.addEventListener('popstate', function(){ location.reload(); });
 
     // --- Geolocation ---
     if(navigator.geolocation){
-      navigator.geolocation.getCurrentPosition(pos => {
-        const lat = pos.coords.latitude;
-        const lon = pos.coords.longitude;
-        let region = 'Global';
-        if(lat > 6 && lat < 38 && lon > 68 && lon < 98) region = 'India';
-        else if(lat > 24 && lat < 50 && lon > -130 && lon < -60) region = 'North America';
-        else if(lat > -10 && lat < 55 && lon > -20 && lon < 55) region = 'Europe';
-        else if(lat > -10 && lat < 55 && lon > 95 && lon < 155) region = 'Asia Pacific';
-        const badge = document.getElementById('location-badge');
-        if(badge){ badge.textContent = region; badge.style.display = 'inline-block'; }
-      }, ()=>{}, {timeout:5000});
+      navigator.geolocation.getCurrentPosition(function(pos){
+        var lat=pos.coords.latitude, lon=pos.coords.longitude;
+        var r='Global';
+        if(lat>6&&lat<38&&lon>68&&lon<98)r='India';
+        else if(lat>24&&lat<50&&lon>-130&&lon<-60)r='North America';
+        else if(lat>-10&&lat<55&&lon>-20&&lon<55)r='Europe';
+        else if(lat>-10&&lat<55&&lon>95&&lon<155)r='Asia Pacific';
+        var b=document.getElementById('location-badge');
+        if(b){b.textContent=r;b.style.display='inline-block';}
+      },function(){},{timeout:5000});
     }
   })();
   </script>
@@ -526,10 +607,6 @@ function build() {
       <p>Everything about Nuri — our story, policies, products, and more.</p>
     </div>
     <div class="grid">${cards}</div>
-    <div class="turnstile-wrap">
-      <p>Verify you're human</p>
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAAA" data-theme="light"></div>
-    </div>
   `);
 
   fs.writeFileSync(path.join(PUBLIC_DIR, 'index.html'), indexHtml);
