@@ -1,7 +1,7 @@
 {
   "name": "nuri-docs",
   "version": "1.0.0",
-  "description": "Nuri internal documentation — company, legal, brand, operations, marketing, finance, and technical docs.",
+  "description": "Nuri public documentation — company, policies, and brand guidelines.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
