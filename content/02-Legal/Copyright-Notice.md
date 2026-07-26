@@ -1,30 +1,29 @@
-# Copyright & Intellectual Property Notice (Internal Record)
-
-- **Document ID**: LP-CR-001
-- **Version**: 1.0
-- **Created Date**: July 19, 2026
-- **Status**: Active
-
-## Purpose
-
-Internal record aligned with the public `/copyright` and `/ip-notice` pages.
+# Copyright & Intellectual Property Notice
 
 ## Ownership
 
-- Original content (text, graphics, logos, artwork, photography, source code, designs) is owned by
-  Nuri / Shubham Chawhan until formally assigned to a registered entity by written agreement.
-- "Nuri" and related marks are identifiers used by this business.
+All original content on this website — including text, graphics, logos, artwork, photography, source code, and designs — is owned by Nuri and protected by applicable copyright laws.
+
+"Nuri" and all related brand identifiers, marks, and logos are used by this business and may not be used without written permission.
 
 ## Permitted Use
 
-- Personal, non-commercial viewing and printing only.
-- No reproduction, distribution, or derivative works without written permission.
+You are welcome to view and print pages from our website for personal, non-commercial use. Any other use — including reproduction, distribution, or creation of derivative works — requires prior written permission from Nuri.
 
-## Third-Party Material
+## Third-Party Materials
 
-- Open-source software, fonts, frameworks, and licensed assets remain with their owners under their
-  own licenses. No ownership is claimed over them.
+Our website may include open-source software, fonts, frameworks, and licensed assets owned by their respective creators. We do not claim ownership over these materials, and they remain subject to their own licenses.
 
-## Complaints
+## Reporting Copyright Concerns
 
-- Handled via `/dmca` (DMCA / Copyright Complaint Policy).
+If you believe content on our website infringes your copyright, please contact us at **nuri@shubhamos.com** with the following details:
+
+- A description of the copyrighted work you believe has been infringed
+- The URL where the infringing content appears
+- Your contact information
+- A statement of good-faith belief that the use is not authorized
+- A statement, under penalty of perjury, that the information is accurate and you are the rights holder or authorized to act on their behalf
+
+We take all copyright concerns seriously and will respond promptly.
+
+**钷钷钷钷钷钷钷钷**

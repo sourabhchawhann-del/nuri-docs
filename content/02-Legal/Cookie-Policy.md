@@ -1,32 +1,43 @@
-# Cookie Policy (Internal Record)
+# Cookie Policy
 
-- **Document ID**: LP-CP-001
-- **Version**: 1.0
-- **Created Date**: July 19, 2026
-- **Status**: Active
+## What Are Cookies?
 
-## Purpose
+Cookies are small text files placed on your device when you visit our website. They help us provide you with a better, faster, and more personalized experience.
 
-Records Nuri's cookie usage and consent approach, aligned with the public `/cookie-policy` and
-`/cookie-preferences` pages.
+## How We Use Cookies
 
-## Cookie Categories
+We use cookies for the following purposes:
 
 | Category | Purpose | Requires Consent |
 | --- | --- | --- |
-| Essential | Authentication, session security, cart, CSRF | No (always on) |
+| Essential | Authentication, session security, cart, CSRF protection | No (always on) |
 | Analytics | Understand site usage and improve experience | Yes |
 | Marketing | Measure campaigns and show relevant content | Yes |
 
-## Consent Mechanism
+## Your Choices
 
-- A consent banner appears on first visit with **Accept All**, **Deny**, and **Customise** options.
-- Choice stored in `localStorage` under key `nuri-cookie-consent`.
-- Users can revisit choices any time via `/cookie-preferences` (footer link).
-- Declining non-essential cookies does not block site usage.
+When you first visit our site, a consent banner appears with the following options:
 
-## Compliance Notes
+- **Accept All** — Enable all cookie categories
+- **Deny** — Only essential cookies will be used
+- **Customise** — Choose which categories to allow
 
-- Designed for transparency and basic GDPR/CCPA awareness and Indian privacy considerations.
-- No personal data is sold. Analytics/marketing cookies load only after consent.
-- This notice does not constitute legal advice; review with counsel before international launch.
+You can change your preferences at any time by visiting our **Cookie Preferences** page (linked in the footer).
+
+## What Happens If You Decline?
+
+Declining non-essential cookies will not block your ability to use our website. You can still browse, shop, and place orders.
+
+## Third-Party Cookies
+
+Some cookies are set by third-party services we use, such as analytics and advertising partners. These cookies are only loaded after you give consent.
+
+## Updates to This Policy
+
+We may update this Cookie Policy from time to time. Any changes will be reflected on this page.
+
+## Questions?
+
+If you have questions about our use of cookies, please contact us at **nuri@shubhamos.com**.
+
+**钷钷钷钷钷钷钷钷**

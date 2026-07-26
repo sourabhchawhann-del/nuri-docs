@@ -1,24 +1,31 @@
-# Legal Notice & Disclaimer (Internal Record)
+# Disclaimer
 
-- **Document ID**: LP-DIS-001
-- **Version**: 1.0
-- **Created Date**: July 19, 2026
-- **Status**: Active
+## General Information
 
-## Purpose
+The content on Nuri's website is provided for general informational purposes. While we strive for accuracy, we make no warranties about the completeness, reliability, or suitability of this information.
 
-Internal record of Nuri's disclaimer and limitation of liability, aligned with the public `/disclaimer`.
+## Not Professional Advice
 
-## Key Points
+Nothing on our website constitutes legal, financial, tax, or professional advice. Please consult a qualified professional for guidance specific to your situation.
 
-- Website content is for general informational purposes only.
-- No legal, financial, tax, or professional advice is given.
-- Product representations (color, size) may vary slightly from images.
-- External links are not endorsed and are not our responsibility.
-- Liability is limited to the amount paid for the relevant product or service, to the extent permitted by law.
-- Policy may change; continued use implies acceptance of revisions.
+## Product Representations
 
-## Note
+We make every effort to display our products accurately. However, slight variations in color, size, or texture may occur due to screen settings, manufacturing processes, or natural material differences.
 
-Nuri is an unincorporated sole proprietorship. This document does not create legal obligations beyond
-ordinary business practice.
+## External Links
+
+Our website may contain links to third-party websites. We do not endorse or take responsibility for the content, policies, or practices of external sites.
+
+## Limitation of Liability
+
+To the maximum extent permitted by law, Nuri's liability is limited to the amount paid for the specific product or service giving rise to the claim. We are not liable for indirect, incidental, or consequential damages.
+
+## Changes to This Disclaimer
+
+We may update this disclaimer from time to time. Continued use of our website after changes are posted constitutes acceptance of the revised terms.
+
+## Contact
+
+If you have any questions about this disclaimer, please reach out to us at **nuri@shubhamos.com**.
+
+**钷钷钷钷钷钷钷钷**

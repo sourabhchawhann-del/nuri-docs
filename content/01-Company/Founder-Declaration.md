@@ -1,15 +1,9 @@
 # Founder Declaration
 
 ---
+
 **Company**: Nuri  
 **Founder**: Shubham Chawhan  
-**Document ID**: FD-001  
-**Version**: 1.1  
-**Effective Date**: July 14, 2026  
-**Status**: Active  
-**Confidentiality**: Internal Corporate Document
-
-> **Note:** Nuri is currently an unincorporated sole-proprietor business. This declaration records internal governance and ownership intentions and does not by itself create a separate legal entity or impose external legal obligations.
 
 ---
 
@@ -22,13 +16,12 @@
 5. Decision-Making Authority
 6. Future Ownership
 7. Amendment Policy
-8. Signatures
 
 ---
 
 ## 1. Purpose
 
-This Founder Declaration establishes the ownership structure, decision-making authority, and governance framework for Nuri. It serves as the definitive record of the company's current ownership and operational responsibilities, providing clarity on decision-making authority and future governance changes.
+This Founder Declaration establishes the ownership structure, decision-making authority, and governance framework for Nuri. It provides clarity on how the company is led and how governance may evolve as Nuri grows.
 
 ---
 
@@ -52,13 +45,13 @@ This Founder Declaration establishes the ownership structure, decision-making au
 - **Employees**: None
 - **Equity Grants**: None issued
 
-This declaration confirms that Nuri currently exists as the personal venture of its founder, with full and undivided ownership maintained by Shubham Chawhan.
+Nuri currently exists as the personal venture of its founder, with full and undivided ownership maintained by Shubham Chawhan.
 
 ---
 
 ## 4. Current Responsibilities
 
-**Founder Responsibilities**: Shubham Chawhan currently holds the following operational roles within Nuri:
+Shubham Chawhan currently holds the following operational roles within Nuri:
 
 ### Primary Leadership Roles
 - **Chief Executive Officer (CEO)**: Overall company strategy and operations
@@ -79,7 +72,7 @@ This declaration confirms that Nuri currently exists as the personal venture of 
 - **Graphic Designer**: Visual content creation
 - **Business Strategist**: Market positioning
 
-**Delegation**: These diverse responsibilities may be delegated, reorganized, or eliminated as Nuri scales and hires additional specialized personnel.
+These diverse responsibilities may be delegated, reorganized, or expanded as Nuri scales and brings on additional team members.
 
 ---
 
@@ -106,10 +99,9 @@ Shubham Chawhan currently maintains final decision-making authority on all matte
 - **Website & Digital**: Online presence and digital strategy
 - **Customer Service**: Support standards and processes
 
-### Important Notes
-- All decisions are subject to future governance evolution as the company grows
-- Future advisory boards or shareholder approval may be implemented
-- Specialized management teams may be established for specific domains
+### Future Evolution
+- As the company grows, governance structures such as advisory boards or specialized management teams may be established.
+- Future decisions may involve broader stakeholder input as appropriate.
 
 ---
 
@@ -117,90 +109,31 @@ Shubham Chawhan currently maintains final decision-making authority on all matte
 
 ### Current Ownership Terms
 
-**Sole Founder Model**: Nuri operates as a 100% founder-owned company without formal governance structures such as a board of directors or shareholders at this stage.
+Nuri operates as a 100% founder-owned company without formal governance structures such as a board of directors or shareholders at this stage.
 
 ### Future Ownership Changes
 
-**Equity Distribution**: Any future changes to the current ownership structure require the following processes:
-
-### Potential Scenarios
-
-1. **Employee Equity Grants**
-   - Written employment agreements
-   - Board approval (when established)
-   - Proper documentation and tax compliance
-
-2. **Investor Involvement**
-   - Investment agreements
-   - Valuation discussions
-   - Board representation agreements
-   - Shareholder agreements (when applicable)
-
-3. **Co-founder Recognition**
-   - Written partnership agreements
-   - Equity allocation agreements
-   - Role and responsibility documentation
-
-4. **Business Acquisition**
-   - Asset purchase agreements
-   - Stock purchase agreements
-   - Due diligence documentation
-
-### Ownership Transfer Procedures
-
-**Documentation Requirements**: All future ownership changes must include:
-- Written documentation executed by all parties
-- Proper legal and tax compliance
-- Board resolutions (if applicable)
-- Updated corporate records
-- Regulatory filings (if incorporated)
+Any future changes to the current ownership structure — including employee equity grants, investor involvement, co-founder recognition, or business acquisition — will be documented through proper written agreements, legal compliance, and updated corporate records.
 
 ---
 
 ## 7. Amendment Policy
 
-### Policy Framework
-
-**Amendment Procedure**: This Founder Declaration may be amended through:
-
-### Amendment Process
+This Founder Declaration may be amended through:
 
 1. **Proposal**: Written proposal submitted by founder
-2. **Review**: Internal assessment and approval
+2. **Review**: Assessment and approval
 3. **Documentation**: Formal amendment documentation
 4. **Implementation**: Integration into company records
-5. **Notification**: Communication to all stakeholders
 
 ### Amendment Categories
 
-**Major Amendments**: Require thorough review and justification:
-- Changes to ownership structure
-- amendment of core business purpose
-- Significant policy modifications
-- Regulatory compliance changes
+**Major Amendments**: Require thorough review and justification, such as changes to ownership structure or core business purpose.
 
-**Minor Amendments**: Can be processed more efficiently:
-- Administrative updates
-- Formatting corrections
-- Internal procedure refinements
-- Non-material clarifications
+**Minor Amendments**: Can be processed more efficiently, including administrative updates, formatting corrections, and non-material clarifications.
 
-### Approval Authority
-
-**Current Authority**: Shubham Chawhan maintains authority to approve amendments without requiring external consent or approval.
+**Current Authority**: Shubham Chawhan maintains authority to approve amendments.
 
 ---
 
-## 8. Signatures
-
-**Founder Signature**: _______________________  
-**Name**: Shubham Chawhan  
-**Date**: _______________________  
-**Location**: Vadodara, Gujarat, India
-
----
-
-© Nuri. All Rights Reserved.  
-**Document Version**: 1.1  
-**Last Updated**: July 19, 2026  
-**Document ID**: FD-001
+**钷钷钷钷钷钷钷钷**

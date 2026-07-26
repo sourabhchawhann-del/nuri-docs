@@ -1,23 +1,17 @@
 # Company Roadmap
 
-## Version
-1.0
-
-## Created Date
-July 14, 2026
-
 ## Purpose
 
-This roadmap outlines Nuri's strategic growth trajectory, key milestones, and phase-based development plan. It serves as a living document to track progress and align resources with business objectives.
+This roadmap outlines Nuri's strategic growth trajectory, key milestones, and phase-based development plan. It reflects our vision for sustainable growth while staying true to our core values.
 
 ## Overview
 
-Nuri operates on a 6-phase growth framework, with each phase building upon previous achievements and setting the stage for future expansion. The roadmap balances organic growth with strategic initiatives while maintaining the company's core values and founder vision.
+Nuri operates on a 6-phase growth framework, with each phase building upon previous achievements and setting the stage for future expansion. The roadmap balances organic growth with strategic initiatives while maintaining our commitment to quality and cultural authenticity.
 
 ## Phase 1: Website Launch
 
 ### Timeline
-July 2026 - August 2026
+July 2026 – August 2026
 
 ### Objectives
 1. **Complete product catalog** with high-quality images and detailed descriptions
@@ -28,8 +22,8 @@ July 2026 - August 2026
 
 ### Key Deliverables
 - Fully responsive website
-- Product photography studio setup
-- Payment gateway integration (Razorpay)
+- Product photography
+- Payment gateway integration
 - Initial marketing content
 - Customer support procedures
 
@@ -41,7 +35,7 @@ July 2026 - August 2026
 ## Phase 2: First Customers
 
 ### Timeline
-August 2026 - December 2026
+August 2026 – December 2026
 
 ### Objectives
 1. **Acquire first 100 customers** through targeted marketing
@@ -51,22 +45,22 @@ August 2026 - December 2026
 5. **Develop customer loyalty program**
 
 ### Key Deliverables
-- Customer relationship management (CRM) system
+- Customer relationship management system
 - Inventory tracking and forecasting
 - Customer support knowledge base
-- First review and testimonial collection
-- Website analytics implementation
+- First reviews and testimonials
+- Website analytics
 
 ### Success Metrics
-- Monthly recurring revenue (MRR)
-- Customer acquisition cost (CAC) < $50
-- Customer lifetime value (CLV) > $200
-- Net promoter score (NPS) > 50
+- Monthly recurring revenue growth
+- Customer acquisition cost < ₹4,000
+- Customer lifetime value > ₹16,000
+- Net promoter score > 50
 
 ## Phase 3: Product Expansion
 
 ### Timeline
-January 2027 - December 2027
+January 2027 – December 2027
 
 ### Objectives
 1. **Expand product line** to include 20 new items
@@ -85,13 +79,13 @@ January 2027 - December 2027
 ### Success Metrics
 - Product-to-market time < 45 days
 - Customer churn rate < 10% annually
-- Average order value (AOV) > ₹1,000
+- Average order value > ₹1,000
 - Social media engagement rate > 5%
 
 ## Phase 4: Brand Growth
 
 ### Timeline
-January 2028 - December 2028
+January 2028 – December 2028
 
 ### Objectives
 1. **Achieve 50,000+ active customers**
@@ -104,20 +98,20 @@ January 2028 - December 2028
 - Influencer partnership contracts
 - Retail distribution channels
 - Mobile app development
-- Limited edition production facilities
+- Limited edition production
 - Brand ambassador program
 
 ### Success Metrics
 - Brand awareness score > 70%
 - Repeat purchase rate > 35%
-- App download goal: 50,000+
+- App downloads: 50,000+
 - Store footprint: 5+ locations
 - Influencer reach: 1M+ followers combined
 
 ## Phase 5: National Expansion
 
 ### Timeline
-2029 - 2031
+2029 – 2031
 
 ### Objectives
 1. **Expand to major Indian cities** (Mumbai, Delhi, Bangalore, Chennai)
@@ -137,13 +131,13 @@ January 2028 - December 2028
 - Revenue growth > 100% annually
 - Store count: 20+ locations
 - Wholesale revenue: 30% of total
-- Employee count: 50-100
+- Team size: 50–100
 - Market share: 5% in target segments
 
 ## Phase 6: International Expansion
 
 ### Timeline
-2032 - 2035
+2032 – 2035
 
 ### Objectives
 1. **Establish international presence** in US, Japan, and South Korea
@@ -162,41 +156,9 @@ January 2028 - December 2028
 ### Success Metrics
 - International revenue: 40% of total
 - Operating in 20+ countries
-- Global employee count: 200+
+- Global team size: 200+
 - International customer base: 1M+
-- Global market share: 2-3%
-
-## Resource Allocation
-
-### Phase 1
-- Budget: $50,000
-- Team: 1 founder + external development
-- Key Focus: Product and website completion
-
-### Phase 2
-- Budget: $100,000
-- Team: 1 founder + customer support specialist
-- Key Focus: Customer acquisition and operations
-
-### Phase 3
-- Budget: $200,000
-- Team: 2-3 employees
-- Key Focus: Product development and partnerships
-
-### Phase 4
-- Budget: $500,000
-- Team: 5-10 employees
-- Key Focus: Brand building and market expansion
-
-### Phase 5
-- Budget: $1,000,000
-- Team: 15-25 employees
-- Key Focus: National scaling and systems
-
-### Phase 6
-- Budget: $2,000,000
-- Team: 50-100 employees
-- Key Focus: Global operations and infrastructure
+- Global market share: 2–3%
 
 ## Risk Management
 
@@ -240,12 +202,12 @@ January 2028 - December 2028
 
 ## Contingency Planning
 
-### Short-Term (0-6 months)
+### Short-Term (0–6 months)
 - Maintain emergency cash reserve: 3 months operating costs
 - Establish backup suppliers
 - Develop crisis communication protocols
 
-### Medium-Term (6-18 months)
+### Medium-Term (6–18 months)
 - Create diversification strategy
 - Implement automation to reduce labor dependency
 - Develop scalable technology infrastructure
@@ -255,19 +217,6 @@ January 2028 - December 2028
 - Prepare for potential acquisition or IPO
 - Establish succession planning
 
-## Revision History
+---
 
-Version 1.0 - July 14, 2026
-- Initial roadmap creation
-- Aligned with current business stage
-- Comprehensive phase-based approach
-
-## Author
-
-Shubham Chawhan
-Founder & CEO
-Nuri
-
-## Next Update
-
-Q1 2027 - Review Phase 2 performance and adjust Phase 3 priorities
+**钷钷钷钷钷钷钷钷**

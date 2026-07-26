@@ -1,23 +1,36 @@
-# Acceptable Use & Accessibility (Internal Record)
+# Acceptable Use & Accessibility
 
-- **Document ID**: LP-AUP-001
-- **Version**: 1.0
-- **Created Date**: July 19, 2026
-- **Status**: Active
+## Acceptable Use
 
-## Acceptable Use (aligned with `/acceptable-use`)
+To keep our community safe and our platform running smoothly, users must not:
 
-Users must not:
 - Transmit malware or harmful code.
 - Attempt unauthorized access to accounts, systems, or data.
-- Scrape or overload infrastructure.
+- Scrape or overload our infrastructure.
 - Impersonate others or provide false information.
 - Post unlawful, abusive, or infringing content.
 - Resell or redistribute products without permission.
 
-## Accessibility (aligned with `/accessibility`)
+Violation of these terms may result in account suspension or termination.
 
-- Commitment to WCAG 2.1 AA where practical.
-- Measures: semantic HTML, keyboard accessibility, color contrast, image alt text, responsive design.
-- Known limitations acknowledged; improvements ongoing.
-- Feedback channel: hello@nuri.com.
+## Accessibility
+
+Nuri is committed to making our website accessible to everyone. We strive to meet **WCAG 2.1 AA** standards where practical.
+
+### What We're Doing
+
+- Semantic HTML for clear content structure
+- Keyboard accessibility throughout the site
+- Sufficient color contrast for readability
+- Alt text for all meaningful images
+- Responsive design that works across devices
+
+### Continuous Improvement
+
+We acknowledge that accessibility is an ongoing effort. We're continually working to identify and address any barriers to access.
+
+### Feedback
+
+We welcome your feedback on accessibility. If you encounter any issues, please let us know at **nuri@shubhamos.com**.
+
+**钷钷钷钷钷钷钷钷**
