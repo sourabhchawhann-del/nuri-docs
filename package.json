@@ -1,0 +1,18 @@
+{
+  "name": "nuri-docs",
+  "version": "1.0.0",
+  "description": "Nuri internal documentation — company, legal, brand, operations, marketing, finance, and technical docs.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node build.js",
+    "dev": "node server.js"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1",
+    "gray-matter": "^4.0.3",
+    "marked": "^18.0.7"
+  }
+}
